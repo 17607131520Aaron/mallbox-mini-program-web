@@ -9,7 +9,7 @@ import {
   MenuFoldOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Layout, Input, List, Menu, Spin, Space, Avatar, Typography } from "antd";
+import { Layout, Input, List, Menu, Space, Avatar, Typography } from "antd";
 
 import { menuItems } from "./constants";
 import type { IFlatMenuItem } from "./types";
@@ -137,9 +137,7 @@ const LayoutPages: React.FC = () => {
           </div>
         </Header>
         <Content className="devpocket-content-outlet">
-          <Spin size="large" spinning={false}>
-            <Outlet />
-          </Spin>
+          <Outlet />
         </Content>
       </Layout>
     </Layout>
