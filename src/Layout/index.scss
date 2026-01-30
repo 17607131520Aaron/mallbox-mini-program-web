@@ -1,0 +1,362 @@
+.devpocket-pages {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  // Ant Design Layout 样式覆盖
+  .ant-layout {
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+  }
+
+  .ant-layout-sider {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    background: var(--color-bg, #fff);
+    box-shadow: var(--shadow-md, 2px 0 12px rgb(0 0 0 / 0.04));
+    overflow: hidden;
+
+    // 让侧边栏内容（含头部 / 搜索 / 菜单）采用纵向 flex 布局
+    .ant-layout-sider-children {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
+    }
+  }
+
+  .ant-layout-content {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .devpocket-sider {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    height: 100%;
+    box-sizing: border-box;
+    border-right: 1px solid var(--color-border-light);
+    transition: width 0.3s cubic-bezier(0.2, 0, 0, 1);
+
+    &-header{
+      flex-shrink: 0;
+      width: 100%;
+      padding: 8px 12px 0;
+
+      &-logo{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        padding: 0 12px;
+        background: linear-gradient(135deg, #237ffa 0%, #1e6dd8 50%, #1a5fc4 100%);
+        border: 1px solid rgb(255 255 255 / 0.1);
+        border-radius: 10px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        min-height: 48px;
+        box-shadow:
+          0 2px 8px rgb(35 127 250 / 0.2),
+          0 1px 3px rgb(0 0 0 / 0.1);
+        overflow: hidden;
+        cursor: pointer;
+        color: #fff;
+        font-weight: 500;
+
+        &-icon {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 32px;
+          height: 32px;
+          font-size: 20px;
+          color: #fff;
+          background: rgb(255 255 255 / 0.15);
+          border-radius: 8px;
+          transition: all 0.3s;
+          flex-shrink: 0;
+        }
+
+        &-title {
+          position: relative;
+          z-index: 1;
+          font-size: 15px;
+          font-weight: 600;
+          color: #fff;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          max-width: 200px;
+          margin-left: 12px;
+          letter-spacing: 0.5px;
+          text-shadow: 0 1px 2px rgb(0 0 0 / 0.1);
+          white-space: nowrap;
+          opacity: 1;
+          overflow: hidden;
+        }
+      }
+    }
+
+    &-search{
+      flex-shrink: 0;
+      padding: 8px 12px 0;
+      color: var(--color-text-secondary, #595959);
+      font-size: 14px;
+      .ant-input {
+        border-radius: 6px;
+        border-color: var(--color-border, #d9d9d9);
+        transition: all 0.2s;
+
+        &:hover {
+          border-color: var(--color-primary);
+        }
+
+        &:focus {
+          border-color: var(--color-primary);
+          box-shadow: 0 0 0 2px rgb(35 127 250 / 0.1);
+        }
+      }
+
+      .anticon-search {
+        color: var(--color-text-tertiary, #8c8c8c);
+      }
+    }
+
+    &-menu{
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+      margin-top: 0;
+      overflow: hidden auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+
+      &-items{
+        width: 100%;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden auto;
+      }
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--color-text-disabled);
+        border-radius: 2px;
+
+        &:hover {
+          background: var(--color-text-tertiary);
+        }
+      }
+
+      // Ant Design Menu 样式
+      .ant-menu {
+        font-size: 14px;
+        background: transparent;
+        border-right: none;
+      }
+
+      // 一级菜单项样式
+      .ant-menu-item,
+      .ant-menu-submenu-title {
+        height: 44px;
+        margin: 2px 0;
+        line-height: 44px;
+        border-radius: 8px;
+        transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+        padding-left: 16px !important;
+        margin-inline: 0;
+
+        &:hover {
+          color: var(--color-primary, #237ffa);
+          background: rgb(35 127 250 / 0.08);
+        }
+      }
+
+      // 一级菜单选中状态
+      .ant-menu-item {
+        &.ant-menu-item-selected {
+          position: relative;
+          font-weight: 500;
+          color: var(--color-primary, #237ffa);
+          background: linear-gradient(90deg, rgb(35 127 250 / 0.12) 0%, rgb(35 127 250 / 0.06) 100%);
+
+          &::before {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 3px;
+            height: 20px;
+            background: var(--color-primary);
+            border-radius: 0 2px 2px 0;
+            transform: translateY(-50%);
+            content: "";
+          }
+
+          &::after {
+            display: none;
+          }
+        }
+      }
+
+      // 二级菜单样式
+      .ant-menu-submenu {
+        .ant-menu-submenu-title {
+          font-weight: 500;
+        }
+
+        &.ant-menu-submenu-open > .ant-menu-submenu-title {
+          color: var(--color-primary, #237ffa);
+        }
+
+        .ant-menu {
+          margin: 4px 0;
+          padding: 4px 0;
+          background: var(--color-bg-tertiary, #f5f5f5);
+        }
+
+        .ant-menu-item {
+          height: 40px;
+          margin: 1px 0;
+          padding-left: 40px !important;
+          font-size: 13px;
+          line-height: 40px;
+
+          &:hover {
+            color: var(--color-primary, #237ffa);
+            background: rgb(35 127 250 / 0.08);
+          }
+
+          &.ant-menu-item-selected {
+            font-weight: 500;
+            color: var(--color-primary, #237ffa);
+            background: rgb(35 127 250 / 0.12);
+
+            &::before {
+              width: 2px;
+              height: 16px;
+            }
+          }
+        }
+      }
+
+      .ant-menu-item-icon,
+      .ant-menu-submenu-title .anticon {
+        margin-right: 12px;
+        font-size: 18px;
+      }
+
+      // 二级菜单图标
+      .ant-menu-submenu .ant-menu-item-icon {
+        margin-right: 10px;
+        font-size: 16px;
+      }
+    }
+
+    &-search-results{
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden auto;
+      display: flex;
+      flex-direction: column;
+
+      &-count{
+        flex-shrink: 0;
+        padding: 8px 16px;
+        font-size: 12px;
+        color: var(--color-text-tertiary, #8c8c8c);
+        background: var(--color-bg-secondary, #f0f2f5);
+        border-bottom: 1px solid var(--color-border-light);
+      }
+
+      &-list{
+        width: 100%;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden auto;
+        .ant-list-item {
+          padding: 0;
+          border: none;
+        }
+
+        &::-webkit-scrollbar {
+          width: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: var(--color-text-disabled);
+          border-radius: 2px;
+
+          &:hover {
+            background: var(--color-text-tertiary);
+          }
+        }
+      }
+    }
+
+    &-search-result-item {
+      margin-top: 2px;
+      padding: 8px 16px !important;
+      border-radius: 6px;
+      transition: all 0.2s;
+      cursor: pointer;
+
+      &:hover {
+        background: rgb(35 127 250 / 0.08);
+      }
+
+      &-selected {
+        font-weight: 500;
+        color: var(--color-primary, #237ffa);
+        background: linear-gradient(90deg, rgb(35 127 250 / 0.12) 0%, rgb(35 127 250 / 0.06) 100%);
+      }
+    }
+
+    &-search-result-content {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    &-search-result-icon {
+      display: flex;
+      align-items: center;
+      margin-right: 8px;
+      font-size: 16px;
+    }
+
+    &-search-result-label {
+      flex: 1;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .devpocket-content {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a5fc4;
+  }
+}
