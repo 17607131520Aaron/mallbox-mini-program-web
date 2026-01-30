@@ -11,10 +11,13 @@ node_modules
 dist
 dist-ssr
 *.local
+tsconfig.tsbuildinfo
+
+# Docker 备份目录
+deploy-backup
+deploy
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
 .idea
 .DS_Store
 *.suo
@@ -22,3 +25,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.stylelintcache
