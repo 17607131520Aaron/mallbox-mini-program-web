@@ -2,13 +2,20 @@ import React from "react";
 
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
-import { AppstoreOutlined, SearchOutlined } from "@ant-design/icons";
-import { Layout, Input, List, Menu } from "antd";
+import {
+  AppstoreOutlined,
+  SearchOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Layout, Input, List, Menu, Spin, Space, Avatar, Typography } from "antd";
 
 import { menuItems } from "./constants";
 import type { IFlatMenuItem } from "./types";
 import useLayout from "./useLayout";
 const { Header, Sider, Content } = Layout;
+const { Text } = Typography;
 
 import "./index.scss";
 
@@ -113,7 +120,27 @@ const LayoutPages: React.FC = () => {
         </div>
       </Sider>
       <Layout className="devpocket-content">
-        <Outlet />
+        <Header className="devpocket-content-header">
+          <div className="devpocket-content-header-left">
+            <div className="devpocket-content-header-toggle" onClick={() => handleComplete(!collapsed)}>
+              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            </div>
+          </div>
+          <div className="devpocket-content-header-center" />
+          <div className="devpocket-content-header-right">
+            <Space size="middle">
+              <Space className="devpocket-content-header-content-user" style={{ cursor: "pointer" }}>
+                <Avatar icon={<UserOutlined />} size={32} style={{ backgroundColor: "#237ffa" }} />
+                <Text style={{ fontSize: 14, color: "#595959" }}>管理员</Text>
+              </Space>
+            </Space>
+          </div>
+        </Header>
+        <Content className="devpocket-content-outlet">
+          <Spin size="large" spinning={false}>
+            <Outlet />
+          </Spin>
+        </Content>
       </Layout>
     </Layout>
   );
