@@ -1,6 +1,9 @@
 import { useState } from "react";
+
+import type { INetworkRequest } from "@/pages/NetworkLogs/types";
 const useNetworkLogs = () => {
   const [searchText, setSearchText] = useState("");
+  const [selectedRequest, setSelectedRequest] = useState<INetworkRequest | null>(null);
   const [methodFilter, setMethodFilter] = useState<string>("all");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const handelMethods = (val: string): void => {
@@ -37,6 +40,8 @@ const useNetworkLogs = () => {
     handleConnectClick,
     handleClose,
     handleClearRequests,
+    selectedRequest,
+    setSelectedRequest,
   };
 };
 

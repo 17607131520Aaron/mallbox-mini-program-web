@@ -1,7 +1,7 @@
 import { Space, Typography, Tooltip } from "antd";
 
-import { getStatusColor, getMethodColor, formatSize, formatDuration } from "./constants";
 import type { INetworkRequest } from "./types";
+import { getStatusColor, getMethodColor, formatSize, formatDuration } from "./utils";
 const { Text } = Typography;
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type,@typescript-eslint/explicit-module-boundary-types

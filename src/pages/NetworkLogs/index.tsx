@@ -3,9 +3,11 @@ import React from "react";
 import { ReloadOutlined, StopOutlined, ClearOutlined } from "@ant-design/icons";
 import { Badge, Button, Card, Input, Select, Space, Spin, Tooltip, Typography, Table } from "antd";
 
+import RequestDetails from "./RequestDetails";
 import type { INetworkRequest } from "./types";
 import useColumns from "./useColumns";
 import { useNetworkLogs } from "./useNetworkLogs";
+
 import "./index.scss";
 
 const { Text } = Typography;
@@ -51,6 +53,8 @@ const NetworkLogs: React.FC = () => {
     handleClose,
     handleClearRequests,
     handleSearch,
+    selectedRequest,
+    setSelectedRequest,
   } = useNetworkLogs();
 
   const columns = useColumns();
@@ -137,13 +141,16 @@ const NetworkLogs: React.FC = () => {
               onRow={(record) => ({
                 onClick: () => {
                   console.log(record, "record");
+                  setSelectedRequest(record);
                 },
                 style: { cursor: "pointer" },
               })}
             />
           </div>
         </Card>
-        <Card className="network-info" />
+        <Card className="network-info">
+          <RequestDetails request={selectedRequest} />
+        </Card>
       </div>
     </div>
   );

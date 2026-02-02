@@ -1,0 +1,123 @@
+.network-details {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .network-details-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .network-method-badge {
+      padding: 2px 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      border-radius: 3px;
+      text-transform: uppercase;
+      min-width: 45px;
+      text-align: center;
+    }
+
+    .network-method-url {
+      flex: 1;
+    }
+  }
+
+  .request-details {
+    flex: 1;
+    width: 100%;
+
+    .ant-tabs{
+      width: 100%;
+      height: 100%;
+    }
+
+    .ant-tabs-content {
+      position: absolute; /* 替代百分比，绝对定位占满父容器 */
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0; /* 上下左右为0，强制占满父容器可用区域 */
+      overflow: auto; /* 内容超出显示滚动条，未超出不显示 */
+      margin: 0; /* 清除AntD默认外边距，避免滚动条区域被挤压 */
+      padding: 0; /* 可选：清除默认内边距，根据需求调整 */
+      box-sizing: border-box; /* 防止内边距撑大容器，可选 */
+    }
+
+    /* 关键：给父元素加相对定位，让absolute生效 */
+    .ant-tabs-content-holder {
+      position: relative; /* 绝对定位的子元素，必须有定位父容器 */
+      height: 100%; /* 确保父容器本身有高度约束，层层继承 */
+    }
+
+    .network-details-content{
+      width: 100%;
+      height: 100%;
+
+      .network-details-section{
+        &:last-child {
+          margin-bottom: 0;
+        }
+        .network-details-section-title {
+          display: block;
+          margin-bottom: 12px;
+          font-size: 14px;
+          color: #262626;
+        }
+
+        .network-headers-table {
+          border: 1px solid #f0f0f0;
+          border-radius: 4px;
+          overflow: hidden;
+
+          .network-headers-row {
+            display: flex;
+            border-bottom: 1px solid #f0f0f0;
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            .network-headers-key {
+              width: 200px;
+              padding: 8px 12px;
+              font-weight: 500;
+              color: #595959;
+              background: #fafafa;
+              flex-shrink: 0;
+              border-right: 1px solid #f0f0f0;
+              word-break: break-word;
+            }
+
+            .network-headers-value {
+              flex: 1;
+              padding: 8px 12px;
+              color: #262626;
+              word-break: break-all;
+            }
+          }
+        }
+
+        .network-json-viewer {
+          margin: 0;
+          padding: 12px;
+          font-size: 12px;
+          font-family: Monaco, Menlo, "Ubuntu Mono", Consolas, source-code-pro, monospace;
+          line-height: 1.6;
+          color: #262626;
+          background: #f5f5f5;
+          border: 1px solid #e8e8e8;
+          border-radius: 4px;
+          overflow: auto;
+          white-space: pre-wrap;
+          overflow-wrap: break-word;
+          max-height: 500px;
+        }
+      }
+    }
+  }
+}
